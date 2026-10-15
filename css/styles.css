@@ -1,0 +1,151 @@
+/* Mobile-first: gaya dasar untuk layar kecil (satu kolom) */
+:root {
+  --hijau: #1b5e20;
+  --hijau-gelap: #124116;
+  --teks: #1c1c1c;
+  --latar: #ffffff;
+  --latar-kartu: #f1f6f1;
+  --garis: #5f7a61;
+  --fokus: #b45309;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--teks);
+  background: var(--latar);
+}
+
+h1, h2, h3 { line-height: 1.25; margin: 0 0 0.5rem; }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.1rem; }
+p { margin: 0 0 1rem; overflow-wrap: break-word; }
+
+/* Focus indicator terlihat */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--fokus);
+  outline-offset: 2px;
+}
+
+/* Header & navigasi */
+.site-header {
+  background: var(--hijau);
+  color: #fff;
+  padding: 1.5rem 1rem 1rem;
+}
+.site-header p { margin: 0; }
+
+.site-nav { background: var(--hijau-gelap); }
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+.site-nav a {
+  display: inline-block;
+  padding: 0.5rem 0.25rem;
+  color: #fff;
+}
+.site-nav a:focus-visible { outline-color: #fff; }
+
+/* Konten utama */
+main {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+main > section { padding: 1.5rem 0; scroll-margin-top: 0.5rem; }
+
+/* Kartu layanan: 1 kolom di layar kecil */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  background: var(--latar-kartu);
+  border: 1px solid var(--garis);
+  border-radius: 0.5rem;
+}
+.card p { flex-grow: 1; }
+
+/* Tombol (link dan button) */
+.button {
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--hijau);
+  border: 2px solid var(--hijau);
+  border-radius: 0.4rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover { background: var(--hijau-gelap); border-color: var(--hijau-gelap); }
+
+/* Form */
+form { max-width: 36rem; }
+.field { margin-bottom: 1rem; }
+label { display: block; margin-bottom: 0.25rem; font-weight: 600; }
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  font: inherit;
+  color: var(--teks);
+  background: #fff;
+  border: 2px solid var(--garis);
+  border-radius: 0.4rem;
+}
+textarea { resize: vertical; }
+
+/* Footer */
+.site-footer {
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+  background: var(--hijau-gelap);
+}
+.site-footer p { margin: 0.25rem 0; }
+
+/* Breakpoint dipilih karena kartu mulai cukup lebar untuk 3 kolom (sekitar 768px) */
+@media (min-width: 48em) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  .site-header { padding: 2rem 2rem 1.25rem; }
+  .site-nav ul { padding: 0.5rem 2rem; }
+  main { padding: 1.5rem 2rem; }
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Layar lebar: batasi lebar baca agar tidak terlalu renggang */
+@media (min-width: 80em) {
+  .site-header, .site-nav ul {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .site-header { max-width: none; padding-left: calc((100% - 64rem) / 2 + 2rem); }
+  .site-nav { padding: 0; }
+}
